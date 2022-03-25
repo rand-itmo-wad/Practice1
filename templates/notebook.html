@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Notebook</title>
+        <link rel="stylesheet" href="../static/bootstrap.min.css">
+        <style>
+        </style>
+    </head>
+    <body class="bg-dark">
+        <div class="container my-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-2">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="/profile">
+                                Profile
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/profile/notebook">
+                                Notebook
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <div class="card px-5 py-5" id="form1">
+                        <div class="card-body">
+                            <h5 class="card-title">Notebook</h5>
+                            {% if message %}
+                                <ul>
+                                    <li>
+                                        {{ message }}
+                                    </li>
+                                </ul>
+                            {% endif %}
+
+                            {% if notes %}
+                                <ul>
+                                    {% for note in notes %}
+                                        <li>
+                                            <p>{{ note.title }}</p>
+                                            <p>{{ note.description }}</p>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
+                            <form action="" method="post">
+                                <div class="form-group">
+                                    <label for="title">Title</label>
+                                    <input type="text" class="form-control" id="title" name="title"
+                                           aria-describedby="titleHelp" placeholder="Enter title">
+                                    <small id="titleHelp" class="form-text text-muted">Example: homework</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">Title</label>
+                                    <textarea class="form-control" id="description" name="description"
+                                              aria-describedby="descriptionHelp"
+                                              placeholder="Enter description"></textarea>
+                                    <small id="descriptionHelp" class="form-text text-muted">Example: page 1, and so
+                                        on...
+                                    </small>
+                                </div>
+
+                                <div class="mt-4 d-grid gap-2">
+                                    <button class="btn btn-primary" type="submit">Add</button>
+                                    <a class="btn btn-danger" href="/profile/notebook/clear">Clear</a>
+                                </div>
+                            </form>
+                            <div class="row">
+                                <form method="get" action="">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="number">number of notes to show</label>
+                                            <input type="number" class="form-control" id="number" name="num"
+                                                   aria-describedby="numberHelp" placeholder="Enter number">
+                                            <small id="numberHelp" class="form-text text-muted">Example: 1,2</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button class="btn btn-primary" type="submit">View</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
